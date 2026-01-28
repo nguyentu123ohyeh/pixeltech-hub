@@ -36,7 +36,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-primary/30 mb-6">
               <Zap className="w-4 h-4 text-primary" />
-              <span className="text-sm text-muted-foreground">About TechNova</span>
+              <span className="text-sm text-muted-foreground">About Kali Clark</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
@@ -44,7 +44,7 @@ const About = () => {
             </h1>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Since our founding, TechNova has been at the forefront of the technology revolution.
+              Since our founding, Kali Clark has been at the forefront of the technology revolution.
               We believe that everyone deserves access to cutting-edge devices that enhance their
               lives, work, and creativity.
             </p>
@@ -61,7 +61,7 @@ const About = () => {
                 Our Mission
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                At TechNova, we're more than just a tech retailer. We're your trusted partner in
+                At Kali Clark, we're more than just a tech retailer. We're your trusted partner in
                 navigating the ever-evolving world of technology. Our mission is simple: to provide
                 you with the best products, exceptional service, and expert guidance to help you
                 make informed decisions.
@@ -126,7 +126,7 @@ const About = () => {
               Leadership
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Meet the visionary behind TechNova
+              Meet the visionary behind Kali Clark
             </p>
           </div>
 
@@ -138,7 +138,7 @@ const About = () => {
               <h3 className="text-2xl font-bold text-foreground mb-2">Kali Clark</h3>
               <p className="text-primary font-medium mb-4">Founder & CEO</p>
               <p className="text-muted-foreground leading-relaxed">
-                With over a decade of experience in the tech industry, Kali founded TechNova with
+                With over a decade of experience in the tech industry, Kali founded Kali Clark with
                 a vision to make premium technology accessible to everyone. Her passion for
                 innovation and customer satisfaction continues to drive our company forward.
               </p>
@@ -158,9 +158,8 @@ const About = () => {
       {/* Stats Section */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { value: '500+', label: 'Products' },
               { value: '50K+', label: 'Happy Customers' },
               { value: '99%', label: 'Satisfaction Rate' },
               { value: '24/7', label: 'Support' },

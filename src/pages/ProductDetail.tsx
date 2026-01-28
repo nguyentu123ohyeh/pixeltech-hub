@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ShoppingCart, Star, Truck, Shield, RotateCcw, Check, ChevronLeft } from 'lucide-react';
+import { ShoppingCart, Star, Truck, Shield, RotateCcw, Check, ChevronLeft, Mail } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { ProductCard } from '@/components/products/ProductCard';
 import { products } from '@/data/products';
@@ -142,29 +142,16 @@ const ProductDetail = () => {
                 )}
               </div>
 
-              {/* Add to Cart */}
-              <Button
-                size="lg"
-                onClick={handleAddToCart}
-                disabled={product.stock === 0}
-                className={`w-full text-lg py-6 ${
-                  addedToCart
-                    ? 'bg-green-600 hover:bg-green-600'
-                    : 'bg-primary hover:bg-primary/90'
-                } text-primary-foreground`}
-              >
-                {addedToCart ? (
-                  <>
-                    <Check className="w-5 h-5 mr-2" />
-                    Added to Cart!
-                  </>
-                ) : (
-                  <>
-                    <ShoppingCart className="w-5 h-5 mr-2" />
-                    Add to Cart
-                  </>
-                )}
-              </Button>
+              {/* Contact Us Button */}
+              <Link to="/contact" className="w-full">
+                <Button
+                  size="lg"
+                  className="w-full text-lg py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
+                >
+                  <Mail className="w-5 h-5 mr-2" />
+                  Contact Us
+                </Button>
+              </Link>
 
               {/* Features */}
               <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">

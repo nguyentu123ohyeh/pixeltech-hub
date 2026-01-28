@@ -136,7 +136,7 @@ const Cart = () => {
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center mt-4">
-                  Secure checkout powered by TechNova
+                  Secure checkout powered by Kali Clark
                 </p>
               </div>
             </div>

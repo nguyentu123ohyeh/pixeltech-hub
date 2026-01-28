@@ -48,8 +48,8 @@ export const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border">
               <div>
-                <p className="text-2xl font-bold text-foreground">500+</p>
-                <p className="text-sm text-muted-foreground">Products</p>
+                <p className="text-2xl font-bold text-foreground">24/7</p>
+                <p className="text-sm text-muted-foreground">Supports</p>
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">50K+</p>

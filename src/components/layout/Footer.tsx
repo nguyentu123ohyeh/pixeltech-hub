@@ -14,7 +14,7 @@ export const Footer = () => {
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center">
                 <Zap className="w-5 h-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold gradient-text">TechNova</span>
+              <span className="text-xl font-bold gradient-text">Kali Clark</span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Your destination for cutting-edge technology. We bring you the latest in laptops, smartphones, and accessories.
@@ -97,7 +97,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 TechNova. All rights reserved.
+            © 2024 Kali Clark. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm">
             Contact: Kali Clark

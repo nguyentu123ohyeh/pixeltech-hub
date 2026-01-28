@@ -29,7 +29,7 @@ export const Header = () => {
               <Zap className="w-5 h-5 text-primary-foreground" />
             </div>
           </div>
-          <span className="text-xl font-bold gradient-text hidden sm:block">TechNova</span>
+          <span className="text-xl font-bold gradient-text hidden sm:block">Kali Clark</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -52,7 +52,7 @@ export const Header = () => {
 
         {/* Cart & Mobile Menu */}
         <div className="flex items-center gap-4">
-          <Link to="/cart" className="relative group">
+          <Link to="" className="relative group">
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="w-5 h-5 group-hover:text-primary transition-colors" />
               {totalItems > 0 && (
