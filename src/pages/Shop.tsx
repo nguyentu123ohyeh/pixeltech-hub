@@ -3,7 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { ProductCard } from '@/components/products/ProductCard';
-import { products, categories, brands } from '@/data/products';
+// ĐÃ XÓA brands Ở ĐÂY
+import { products, categories } from '@/data/products'; 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -18,7 +19,6 @@ const Shop = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     searchParams.get('category') ? [searchParams.get('category')!] : []
   );
-  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState([0, 2500]);
   const [sortBy, setSortBy] = useState('newest');
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -28,23 +28,16 @@ const Shop = () => {
   const filteredProducts = useMemo(() => {
     let result = products;
 
-    // Search filter
+    // Search filter - Xóa p.brand
     if (search) {
       result = result.filter(
-        (p) =>
-          p.name.toLowerCase().includes(search.toLowerCase()) ||
-          p.brand.toLowerCase().includes(search.toLowerCase())
+        (p) => p.name.toLowerCase().includes(search.toLowerCase())
       );
     }
 
     // Category filter
     if (selectedCategories.length > 0) {
       result = result.filter((p) => selectedCategories.includes(p.category));
-    }
-
-    // Brand filter
-    if (selectedBrands.length > 0) {
-      result = result.filter((p) => selectedBrands.includes(p.brand));
     }
 
     // Price filter
@@ -66,7 +59,7 @@ const Shop = () => {
     }
 
     return result;
-  }, [search, selectedCategories, selectedBrands, priceRange, sortBy]);
+  }, [search, selectedCategories, priceRange, sortBy]);
 
   const toggleCategory = (category: string) => {
     setSelectedCategories((prev) =>
@@ -74,16 +67,9 @@ const Shop = () => {
     );
   };
 
-  const toggleBrand = (brand: string) => {
-    setSelectedBrands((prev) =>
-      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
-    );
-  };
-
   const clearFilters = () => {
     setSearch('');
     setSelectedCategories([]);
-    setSelectedBrands([]);
     setPriceRange([0, maxPrice]);
     setSortBy('newest');
   };
@@ -116,7 +102,7 @@ const Shop = () => {
           value={priceRange}
           onValueChange={setPriceRange}
           max={maxPrice}
-          step={50}
+          step={1}
           className="mb-4"
         />
         <div className="flex justify-between text-sm text-muted-foreground">
@@ -125,26 +111,6 @@ const Shop = () => {
         </div>
       </div>
 
-      {/* Brands */}
-      <div>
-        <h3 className="font-semibold text-foreground mb-4">Brands</h3>
-        <div className="space-y-3">
-          {brands.map((brand) => (
-            <div key={brand} className="flex items-center gap-3">
-              <Checkbox
-                id={brand}
-                checked={selectedBrands.includes(brand)}
-                onCheckedChange={() => toggleBrand(brand)}
-              />
-              <Label htmlFor={brand} className="text-sm text-muted-foreground cursor-pointer">
-                {brand}
-              </Label>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Clear Filters */}
       <Button variant="outline" onClick={clearFilters} className="w-full border-border">
         Clear All Filters
       </Button>
@@ -155,7 +121,6 @@ const Shop = () => {
     <Layout>
       <section className="section-padding">
         <div className="container-custom">
-          {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">All Products</h1>
             <p className="text-muted-foreground">
@@ -163,7 +128,6 @@ const Shop = () => {
             </p>
           </div>
 
-          {/* Search and Sort Bar */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -176,7 +140,6 @@ const Shop = () => {
             </div>
 
             <div className="flex gap-4">
-              {/* Mobile Filter Button */}
               <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
                 <SheetTrigger asChild className="lg:hidden">
                   <Button variant="outline" className="border-border">
@@ -205,8 +168,8 @@ const Shop = () => {
             </div>
           </div>
 
-          {/* Active Filters */}
-          {(selectedCategories.length > 0 || selectedBrands.length > 0) && (
+          {/* Active Filters - Chỉ giữ lại Category */}
+          {selectedCategories.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-8">
               {selectedCategories.map((cat) => (
                 <span
@@ -219,29 +182,16 @@ const Shop = () => {
                   </button>
                 </span>
               ))}
-              {selectedBrands.map((brand) => (
-                <span
-                  key={brand}
-                  className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-secondary text-muted-foreground text-sm"
-                >
-                  {brand}
-                  <button onClick={() => toggleBrand(brand)}>
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              ))}
             </div>
           )}
 
           <div className="flex gap-8">
-            {/* Desktop Sidebar */}
             <aside className="hidden lg:block w-64 flex-shrink-0">
               <div className="sticky top-24 glass-card p-6">
                 <FilterSidebar />
               </div>
             </aside>
 
-            {/* Product Grid */}
             <div className="flex-1">
               {filteredProducts.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">

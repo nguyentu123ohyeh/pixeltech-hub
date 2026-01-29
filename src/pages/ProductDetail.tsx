@@ -32,15 +32,9 @@ const ProductDetail = () => {
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
 
-  const handleAddToCart = () => {
-    addToCart(product);
-    setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000);
-  };
-
   return (
     <Layout>
-      <section className="section-padding">
+      <section className="section-padding bg-secondary/30">
         <div className="container-custom">
           {/* Breadcrumb */}
           <Link
@@ -51,29 +45,32 @@ const ProductDetail = () => {
             Back to Shop
           </Link>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Image Gallery */}
             <div className="space-y-4">
-              <div className="aspect-square rounded-2xl overflow-hidden glass-card">
+              {/* Main Image - Chỉnh sửa object-contain và bg-white */}
+              <div className="aspect-square rounded-2xl overflow-hidden bg-white border border-border flex items-center justify-center p-8 shadow-sm">
                 <img
                   src={product.images[selectedImage]}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain transition-all duration-300"
                 />
               </div>
+              
+              {/* Thumbnails */}
               {product.images.length > 1 && (
-                <div className="flex gap-4">
+                <div className="flex gap-4 overflow-x-auto pb-2">
                   {product.images.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImage(index)}
-                      className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                      className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 bg-white p-1 transition-all ${
                         selectedImage === index
-                          ? 'border-primary'
+                          ? 'border-primary shadow-md'
                           : 'border-border hover:border-primary/50'
                       }`}
                     >
-                      <img src={image} alt="" className="w-full h-full object-cover" />
+                      <img src={image} alt="" className="w-full h-full object-contain" />
                     </button>
                   ))}
                 </div>
@@ -83,103 +80,123 @@ const ProductDetail = () => {
             {/* Product Info */}
             <div className="space-y-6">
               <div>
-                <p className="text-sm text-primary font-medium mb-2">{product.brand}</p>
-                <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+                {/* ĐÃ XÓA DÒNG HIỂN THỊ BRAND Ở ĐÂY */}
+                <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 leading-tight">
                   {product.name}
                 </h1>
 
-                <div className="flex items-center gap-4 mb-4">
+                <div className="flex items-center gap-4 mb-6">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-5 h-5 ${
+                        className={`w-4 h-4 ${
                           i < Math.floor(product.rating)
                             ? 'fill-primary text-primary'
-                            : 'text-muted-foreground'
+                            : 'text-muted-foreground/30'
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-muted-foreground">
+                  <span className="text-sm text-muted-foreground">
                     {product.rating} ({product.reviews} reviews)
                   </span>
                 </div>
 
-                <div className="flex items-baseline gap-3">
-                  <span className="text-3xl font-bold text-foreground">
+                <div className="flex items-center flex-wrap gap-3">
+                  <span className="text-4xl font-bold text-foreground">
                     ${product.price.toLocaleString()}
                   </span>
                   {product.originalPrice && (
-                    <span className="text-xl text-muted-foreground line-through">
-                      ${product.originalPrice.toLocaleString()}
-                    </span>
-                  )}
-                  {product.originalPrice && (
-                    <span className="px-2 py-1 bg-primary/20 text-primary text-sm font-medium rounded">
-                      Save ${(product.originalPrice - product.price).toLocaleString()}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl text-muted-foreground line-through">
+                        ${product.originalPrice.toLocaleString()}
+                      </span>
+                      <span className="px-2 py-1 bg-red-500/10 text-red-500 text-xs font-bold rounded">
+                        -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                      </span>
+                    </div>
                   )}
                 </div>
               </div>
 
-              <p className="text-muted-foreground leading-relaxed">{product.description}</p>
+              <div className="h-px bg-border w-full" />
+
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                {product.description}
+              </p>
 
               {/* Stock Status */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 py-2">
                 {product.stock > 0 ? (
                   <>
-                    <span className="w-2 h-2 bg-green-500 rounded-full" />
-                    <span className="text-green-500 text-sm font-medium">
+                    <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
+                    <span className="text-green-600 text-sm font-semibold">
                       In Stock ({product.stock} available)
                     </span>
                   </>
                 ) : (
                   <>
-                    <span className="w-2 h-2 bg-destructive rounded-full" />
-                    <span className="text-destructive text-sm font-medium">Out of Stock</span>
+                    <div className="w-2.5 h-2.5 bg-destructive rounded-full" />
+                    <span className="text-destructive text-sm font-semibold">Out of Stock</span>
                   </>
                 )}
               </div>
 
               {/* Contact Us Button */}
-              <Link to="/contact" className="w-full">
-                <Button
-                  size="lg"
-                  className="w-full text-lg py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
-                >
-                  <Mail className="w-5 h-5 mr-2" />
-                  Contact Us
-                </Button>
-              </Link>
+              <div className="pt-4">
+                <Link to="/contact">
+                  <Button
+                    size="lg"
+                    className="w-full text-lg py-7 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:-translate-y-1"
+                  >
+                    <Mail className="w-6 h-6 mr-3" />
+                    Contact Us to Order
+                  </Button>
+                </Link>
+                <p className="text-center text-xs text-muted-foreground mt-3 italic">
+                  Have questions? Kali Clark is ready to help you with your order.
+                </p>
+              </div>
 
-              {/* Features */}
-              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">
+              {/* Features Icons */}
+              <div className="grid grid-cols-3 gap-4 py-8 border-y border-border">
                 <div className="text-center">
-                  <Truck className="w-6 h-6 mx-auto mb-2 text-primary" />
-                  <p className="text-xs text-muted-foreground">Free Shipping</p>
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Truck className="w-6 h-6 text-primary" />
+                  </div>
+                  <p className="text-xs font-bold text-foreground">Free Shipping</p>
+                  <p className="text-[10px] text-muted-foreground">On all orders</p>
                 </div>
                 <div className="text-center">
-                  <Shield className="w-6 h-6 mx-auto mb-2 text-primary" />
-                  <p className="text-xs text-muted-foreground">2 Year Warranty</p>
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Shield className="w-6 h-6 text-primary" />
+                  </div>
+                  <p className="text-xs font-bold text-foreground">Secure Payment</p>
+                  <p className="text-[10px] text-muted-foreground">Certified safety</p>
                 </div>
                 <div className="text-center">
-                  <RotateCcw className="w-6 h-6 mx-auto mb-2 text-primary" />
-                  <p className="text-xs text-muted-foreground">30 Day Returns</p>
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <RotateCcw className="w-6 h-6 text-primary" />
+                  </div>
+                  <p className="text-xs font-bold text-foreground">30 Day Returns</p>
+                  <p className="text-[10px] text-muted-foreground">No questions asked</p>
                 </div>
               </div>
 
-              {/* Specifications */}
-              <div className="glass-card p-6 mt-6">
-                <h3 className="font-semibold text-foreground mb-4">Technical Specifications</h3>
-                <div className="space-y-3">
+              {/* Specifications Table */}
+              <div className="glass-card overflow-hidden">
+                <div className="bg-secondary/50 px-6 py-4 border-b border-border">
+                  <h3 className="font-bold text-foreground">Technical Specifications</h3>
+                </div>
+                <div className="p-6 space-y-0">
                   {product.specs.map((spec, index) => (
                     <div
                       key={index}
-                      className="flex justify-between py-2 border-b border-border last:border-0"
+                      className="flex justify-between py-3 border-b border-border/50 last:border-0 hover:bg-secondary/20 px-2 -mx-2 transition-colors rounded"
                     >
-                      <span className="text-muted-foreground">{spec.label}</span>
-                      <span className="text-foreground font-medium">{spec.value}</span>
+                      <span className="text-muted-foreground text-sm">{spec.label}</span>
+                      <span className="text-foreground font-semibold text-sm">{spec.value}</span>
                     </div>
                   ))}
                 </div>
@@ -189,9 +206,14 @@ const ProductDetail = () => {
 
           {/* Related Products */}
           {relatedProducts.length > 0 && (
-            <div className="mt-20">
-              <h2 className="text-2xl font-bold text-foreground mb-8">Related Products</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="mt-32">
+              <div className="flex items-center justify-between mb-10">
+                <h2 className="text-3xl font-bold text-foreground">You May Also Like</h2>
+                <Link to="/shop" className="text-primary hover:underline text-sm font-medium">
+                  View All Products
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {relatedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

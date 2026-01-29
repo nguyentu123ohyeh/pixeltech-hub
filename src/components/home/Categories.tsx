@@ -23,7 +23,7 @@ export const Categories = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
           {categories.map((category, index) => {
             const Icon = iconMap[category.icon] || Laptop;
             return (
