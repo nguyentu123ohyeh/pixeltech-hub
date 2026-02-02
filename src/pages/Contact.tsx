@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Clock, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock, CheckCircle, User } from 'lucide-react'; // Thêm User icon
 import { Layout } from '@/components/layout/Layout';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -17,7 +17,6 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -56,6 +55,7 @@ const Contact = () => {
       <section className="section-padding">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12">
+            
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
@@ -67,6 +67,23 @@ const Contact = () => {
               </div>
 
               <div className="space-y-6">
+                
+                {/* --- MỤC NỔI BẬT: PERSONAL LEADER KALI CLARK --- */}
+                <div className="flex items-center gap-6 glass-card p-8 border-l-4 border-l-primary bg-gradient-to-r from-primary/10 to-transparent">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/20">
+                    <User className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-primary mb-1">
+                      Personal Leader
+                    </h3>
+                    <p className="text-3xl font-black text-foreground tracking-tight">
+                      KALI CLARK
+                    </p>
+                  </div>
+                </div>
+
+                {/* Address */}
                 <div className="flex items-start gap-4 glass-card-hover p-6">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-6 h-6 text-primary" />
@@ -74,43 +91,38 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Address</h3>
                     <p className="text-muted-foreground">
-                      1st Avenue 3201
-                      <br />
-                      Columbus, Georgia 31904
+                      1st Avenue 3201, Columbus, Georgia 31904
                     </p>
                   </div>
                 </div>
 
+                {/* Phone */}
                 <div className="flex items-start gap-4 glass-card-hover p-6">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 flex items-center justify-center flex-shrink-0">
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                    <a
-                      href="tel:+13372593713"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
+                    <a href="tel:+13372593713" className="text-muted-foreground hover:text-primary transition-colors">
                       +1 337-259-3713
                     </a>
                   </div>
                 </div>
 
+                {/* Email */}
                 <div className="flex items-start gap-4 glass-card-hover p-6">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 flex items-center justify-center flex-shrink-0">
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                    <a
-                      href="mailto:mjsmmtt08210@hotmail.com"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
+                    <a href="mailto:mjsmmtt08210@hotmail.com" className="text-muted-foreground hover:text-primary transition-colors">
                       mjsmmtt08210@hotmail.com
                     </a>
                   </div>
                 </div>
 
+                {/* Business Hours */}
                 <div className="flex items-start gap-4 glass-card-hover p-6">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-blue-500/20 flex items-center justify-center flex-shrink-0">
                     <Clock className="w-6 h-6 text-primary" />
@@ -118,33 +130,30 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Business Hours</h3>
                     <p className="text-muted-foreground">
-                      Monday - Friday: 9:00 AM - 6:00 PM
-                      <br />
-                      Saturday: 10:00 AM - 4:00 PM
-                      <br />
-                      Sunday: Closed
+                      Mon - Fri: 9:00 AM - 6:00 PM <br />
+                      Sat: 10:00 AM - 4:00 PM
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Map Placeholder */}
-              <div className="glass-card overflow-hidden rounded-xl h-64">
+              <div className="glass-card overflow-hidden rounded-xl h-64 grayscale contrast-125">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3352.8!2d-84.9877!3d32.4609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDI3JzM5LjIiTiA4NMKwNTknMTUuNyJX!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus"
+                  src="http://googleusercontent.com/maps.google.com/6"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
                   title="Kali Clark Location"
                 />
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="glass-card p-8">
+            <div className="glass-card p-8 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-2xl" />
               <h2 className="text-2xl font-bold text-foreground mb-6">Send us a Message</h2>
 
               {submitted ? (
@@ -154,7 +163,7 @@ const Contact = () => {
                   </div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">Message Sent!</h3>
                   <p className="text-muted-foreground">
-                    Thank you for reaching out. We'll get back to you soon.
+                    Thank you for reaching out. <strong>Kali Clark</strong> sẽ phản hồi bạn sớm nhất có thể.
                   </p>
                 </div>
               ) : (
@@ -169,7 +178,7 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="Your name"
                         required
-                        className="bg-secondary border-border"
+                        className="bg-secondary/50 border-border focus:ring-primary"
                       />
                     </div>
                     <div className="space-y-2">
@@ -182,7 +191,7 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="your@email.com"
                         required
-                        className="bg-secondary border-border"
+                        className="bg-secondary/50 border-border focus:ring-primary"
                       />
                     </div>
                   </div>
@@ -196,7 +205,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="How can we help?"
                       required
-                      className="bg-secondary border-border"
+                      className="bg-secondary/50 border-border focus:ring-primary"
                     />
                   </div>
 
@@ -210,14 +219,14 @@ const Contact = () => {
                       placeholder="Tell us more about your inquiry..."
                       rows={6}
                       required
-                      className="bg-secondary border-border resize-none"
+                      className="bg-secondary/50 border-border resize-none focus:ring-primary"
                     />
                   </div>
 
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
                   >
                     <Send className="w-4 h-4 mr-2" />
                     Send Message
