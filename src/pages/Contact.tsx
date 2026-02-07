@@ -91,7 +91,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Address</h3>
                     <p className="text-muted-foreground">
-                      1st Avenue 3201, Columbus, Georgia 31904
+                      1st Avenue 3201, Columbus, Georgia 31904, USA
                     </p>
                   </div>
                 </div>
@@ -140,7 +140,7 @@ const Contact = () => {
               {/* Map Placeholder */}
               <div className="glass-card overflow-hidden rounded-xl h-64 grayscale contrast-125">
                 <iframe
-                  src="http://googleusercontent.com/maps.google.com/6"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1682.607500408187!2d-84.99398026118266!3d32.493682243445804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x888ccc4fe517d2f1%3A0x5efd685d16314d7c!2s3201%201st%20Ave%2C%20Columbus%2C%20GA%2031904%2C%20Hoa%20K%E1%BB%B3!5e0!3m2!1svi!2s!4v1770439723546!5m2!1svi!2s"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

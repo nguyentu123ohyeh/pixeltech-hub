@@ -36,7 +36,7 @@ export const FeaturedBanner = () => {
               </h2>
 
               <p className="text-muted-foreground mb-10 text-lg lg:text-xl leading-relaxed">
-                Nâng tầm góc làm việc với bàn phím cơ Retro Typewriter. Cảm giác gõ phím cổ điển kết hợp cùng công nghệ kết nối hiện đại.
+                Elevate your workspace with the Retro Typewriter mechanical keyboard. Experience classic typing feel combined with modern connectivity technology.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">

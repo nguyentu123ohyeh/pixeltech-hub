@@ -30,7 +30,7 @@ export const Hero = () => {
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-xl leading-relaxed">
-              Khám phá bộ sưu tập phụ kiện công nghệ tinh tế. Từ bàn phím cơ Retro đến những mẫu ốp lưng bảo vệ tối ưu, chúng tôi mang đến những gì tốt nhất cho không gian làm việc của bạn.
+              Discover our collection of sophisticated tech accessories. From retro mechanical keyboards to top-of-the-line protective cases, we bring you the best for your workspace.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
